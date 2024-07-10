@@ -27,15 +27,33 @@ class Product(models.Model):
         Category,
         on_delete=models.CASCADE,
         related_name='products',
+        verbose_name='Категория',
     )
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    available = models.BooleanField(default=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=200, verbose_name='Название')
+    slug = models.SlugField(max_length=200, verbose_name='Слаг')
+    image = models.ImageField(
+        upload_to='products/%Y/%m/%d',
+        blank=True,
+        verbose_name='Изображение'
+    )
+    description = models.TextField(blank=True, verbose_name='Описание')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Цена'
+    )
+    available = models.BooleanField(
+        default=True,
+        verbose_name='Доступен'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Создан',
+    )
+    updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Обновлен'
+    )
 
     class Meta:
         ordering = ['name']
