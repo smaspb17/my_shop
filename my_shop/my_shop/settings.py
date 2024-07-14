@@ -94,3 +94,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ключ сеансов в request.session-корзина товаров
 CART_SESSION_ID = 'cart'
+
+# smtp-протокол
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')  # если EMAIL_PORT = 587
+
+# доп параметры, значения могут быть другими, главное чтобы были
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
