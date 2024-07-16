@@ -7,7 +7,7 @@ from shop.models import Product
 class Cart:
     """Класс управления корзиной покупок"""
     def __init__(self, request):
-        """Инициализация сеанса и корзины внутри него"""
+        """Инициализация корзины в сессии"""
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
@@ -40,17 +40,19 @@ class Cart:
 
     def __iter__(self):
         """
-        Прокрутка товарных позиций в цикле и получение товаров
-        из базы данных.
+        Прокрутка товаров из корзины и их обновление.
         """
         product_ids = self.cart.keys()
         # получение объектов product и добавление их в корзину
         products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
+            # добавить новый ключ:значение product
             cart[str(product.id)]['product'] = product
         for item in cart.values():
+            # обновить значение ключа price
             item['price'] = Decimal(item['price'])
+            # добавить новый ключ:значение total_price
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
@@ -64,7 +66,7 @@ class Cart:
                    self.cart.values())
 
     def clear(self):
-        """Удалить корзину из сеанса"""
+        """Удалить корзину из сессии"""
         del self.session[settings.CART_SESSION_ID]
         self.save()
 
