@@ -4,8 +4,8 @@ from django.urls import reverse
 
 from .models import OrderItem
 from .forms import OrderCreateForm
-from .tasks import order_created
 from cart.cart import Cart
+from .tasks import order_created
 
 
 def order_create(request):
@@ -22,13 +22,10 @@ def order_create(request):
             # очистка корзины после создания заказа
             cart.clear()
             # создание асинхронного задания-отправка email
-            order_created(order.id)
+            order_created.delay(order.id)
             # сохранение id заказа в сессии для дальнейшего
             # использования при оплате
             request.session['order_id'] = order.id
-            # return render(request,
-            #               'orders/order/created.html',
-            #               {'order': order})
             return redirect(reverse('payment:process'))
     else:
         form = OrderCreateForm()
