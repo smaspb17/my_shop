@@ -21,16 +21,13 @@
 		{% for item in cart %}
 			{% with product=item.product %}
 				<tr>
-
 					<td>
 						<a href="{{ product.get_absolute_url }}">
 							<img src="{% if product.image %}{{ product.image.url }}
 								{% else %}{% static "img/no_image.png" %}{% endif %}">
 						</a>
 					</td>
-
 					<td>{{ product.name }}</td>
-
 					<td>
 						<form action="{% url "cart:cart_add" product.id %}" method="post">
 							{{ item.update_quantity_form.quantity }}
@@ -39,7 +36,6 @@
 							{% csrf_token %}
 						</form>
 					</td>
-
 					<td>
 						<form action="{% url "cart:cart_remove" product.id %}"
 							method="post">
@@ -47,21 +43,43 @@
 							{% csrf_token %}
 						</form>
 					</td>
-
 					<td class="num">₽{{ item.price }}</td>
-
 					<td class="num">₽{{ item.total_price }}</td>
 				</tr>
 			{% endwith %}
 		{% endfor %}
+
+		{% if cart.coupon %}
+			<tr class="subtotal">
+				<td>Промежуточная стоимость</td>
+				<td colspan="4"></td>
+				<td class="num">₽{{ cart.get_total_price|floatformat:2 }}</td>
+			</tr>
+			<tr>
+				<td>
+					Купон "{{ cart.coupon.code }}"
+					(скидка {{ cart.coupon.discount }}%)
+				</td>
+				<td colspan="4"></td>
+				<td class="num neg">
+					– ₽{{ cart.get_discount|floatformat:2 }}
+				</td>
+			</tr>
+		{% endif %}
 		<tr class="total">
-			<td>Общая стоимость</td>
+			<td>Итоговая стоимость</td>
 			<td colspan="4"></td>
-			<td class="num">${{ cart.get_total_price }}</td>
+			<td class="num">₽
+				{{ cart.get_total_price_after_discount|floatformat:2 }}</td>
 		</tr>
 		</tbody>
 	</table>
-
+	<p>Примените купон:</p>
+	<form action="{% url "coupons:apply" %}" method="post">
+		{{ coupon_apply_form }}
+		<input type="submit" value="Применить">
+		{% csrf_token %}
+	</form>
 	<p class="text-right">
 		<a href="{% url "shop:product_list" %}" class="button light">
 			Продолжить покупки
