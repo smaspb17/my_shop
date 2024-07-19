@@ -89,6 +89,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -119,7 +120,12 @@ STRIPE_API_VERSION = os.getenv('STRIPE_API_VERSION')
 
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
 
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+# # стучимся к rabbitmq из ПК в контейнер Docker
+# CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+# # стучимся к redis из ПК в контейнер Docker
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# # стучимся к redis если Django и redis оба в контейнере Docker
+# CELERY_BROKER_URL = "redis://redis:6379"
 
 
 
