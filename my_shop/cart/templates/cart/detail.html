@@ -74,12 +74,30 @@
 		</tr>
 		</tbody>
 	</table>
+	{% if recommended_products %}
+		<div class="recommendations cart">
+			<h3>Люди часто покупают с этим</h3>
+			{% for p in recommended_products %}
+				<div class="item">
+					<a href="{{ p.get_absolute_url }}">
+						<img src="{% if p.image %}{{ p.image.url }}{% else %}
+							{% static "img/no_image.png" %}{% endif %}">
+					</a>
+					<p><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
 	<p>Примените купон:</p>
-	<form action="{% url "coupons:apply" %}" method="post">
+	<form action="{% url "coupons:apply" %}" method="post" class="coupon-form">
 		{{ coupon_apply_form }}
-		<input type="submit" value="Применить">
 		{% csrf_token %}
+		<div class="coupon-button-container">
+			<input type="submit" value="Применить" class="coupon-button">
+		</div>
 	</form>
+
 	<p class="text-right">
 		<a href="{% url "shop:product_list" %}" class="button light">
 			Продолжить покупки

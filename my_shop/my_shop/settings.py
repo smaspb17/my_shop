@@ -128,5 +128,9 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 # # стучимся к redis если Django и redis оба в контейнере Docker
 # CELERY_BROKER_URL = "redis://redis:6379"
 
+# настроечные параметры Redis
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
 
 

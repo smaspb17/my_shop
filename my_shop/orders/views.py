@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 
+from shop.recommender import Recommender
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -34,6 +35,8 @@ def order_create(request):
             # сохранение id заказа в сессии для дальнейшего
             # использования при оплате
             request.session['order_id'] = order.id
+            r = Recommender()
+            r.products_bought([item['product'] for item in cart])
             return redirect(reverse('payment:process'))
     else:
         form = OrderCreateForm()

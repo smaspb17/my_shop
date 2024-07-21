@@ -328,3 +328,16 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+
+.coupon-form {
+    display: flex;
+    align-items: center;
+}
+
+.coupon-form .coupon-button-container {
+    margin-left: 10px; /* Добавляем отступ слева для кнопки */
+}
+
+.coupon-button {
+    /* Вы можете добавить дополнительные стили для кнопки здесь */
+}
