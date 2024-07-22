@@ -1,9 +1,9 @@
 import os
-
 from pathlib import Path
 
-from django.core.management.utils import get_random_secret_key
 from dotenv import load_dotenv
+from django.core.management.utils import get_random_secret_key
+from django.utils.translation import gettext_lazy as _
 
 load_dotenv()
 
@@ -26,11 +26,15 @@ INSTALLED_APPS = [
     "orders.apps.OrdersConfig",
     "payment.apps.PaymentConfig",
     "coupons.apps.CouponsConfig",
+    'rosetta',
+    'parler',
+    'localflavor',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -82,11 +86,24 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "ru-RU"
+LANGUAGES = [
+    ('ru', _('Russian')),
+    ('en', _('English')),
+]
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+# настройки django-parler
+PARLER_LANGUAGES = {
+    None: ({'code': 'ru'}, {'code': 'en'}),
+    'default': {'fallback': 'ru', 'hide_untranslated': False},
+}
+
 
 TIME_ZONE = "UTC"
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"

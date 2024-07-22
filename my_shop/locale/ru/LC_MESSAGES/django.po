@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-21 20:15+0300\n"
+"PO-Revision-Date: 2024-07-21 20:20+0000\n"
+"Last-Translator:   <admin@admin.ru>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\cart\forms.py:11 .\cart\templates\cart\detail.html:15
+#: .\payment\templates\payment\process.html:15
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\cart\templates\cart\detail.html:5 .\cart\templates\cart\detail.html:8
+msgid "Cart"
+msgstr "Корзина"
+
+#: .\cart\templates\cart\detail.html:13
+#: .\payment\templates\payment\process.html:12
+msgid "Image"
+msgstr "Изображение"
+
+#: .\cart\templates\cart\detail.html:14
+#: .\payment\templates\payment\process.html:13
+msgid "Product"
+msgstr "Товар"
+
+#: .\cart\templates\cart\detail.html:16 .\cart\templates\cart\detail.html:43
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\cart\templates\cart\detail.html:17
+msgid "Unit price"
+msgstr "Цена"
+
+#: .\cart\templates\cart\detail.html:18
+#: .\payment\templates\payment\process.html:14
+msgid "Price"
+msgstr "Стоимость"
+
+#: .\cart\templates\cart\detail.html:36
+msgid "Update"
+msgstr "Обновить"
+
+#: .\cart\templates\cart\detail.html:55
+#: .\payment\templates\payment\process.html:35
+msgid "Subtotal"
+msgstr "Предварительная стоимость"
+
+#: .\cart\templates\cart\detail.html:61
+#: .\payment\templates\payment\process.html:43
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\"%(code)s\" coupon (%(discount)s%% off)\n"
+"\t\t\t\t\t"
+msgstr ""
+"\n"
+"\"%(code)s\" купон (скидка %(discount)s%%)\n"
+"\t\t\t\t\t"
+
+#: .\cart\templates\cart\detail.html:73
+#: .\payment\templates\payment\process.html:16
+#: .\payment\templates\payment\process.html:56
+msgid "Total"
+msgstr "Итоговая стоимость"
+
+#: .\cart\templates\cart\detail.html:82
+#: .\shop\templates\shop\product\detail.html:29
+msgid "People who bought this also bought"
+msgstr "Люди также покупают с этим"
+
+#: .\cart\templates\cart\detail.html:95
+msgid "Apply a coupon"
+msgstr "Примените купон"
+
+#: .\cart\templates\cart\detail.html:100
+msgid "Apply"
+msgstr "Применить"
+
+#: .\cart\templates\cart\detail.html:106
+msgid "Continue shopping"
+msgstr "Продолжить покупки"
+
+#: .\cart\templates\cart\detail.html:109
+msgid "Checkout"
+msgstr "Купить"
+
+#: .\coupons\forms.py:6
+msgid "Coupon"
+msgstr "Купон"
+
+#: .\my_shop\settings.py:88
+msgid "Russian"
+msgstr "Русский"
+
+#: .\my_shop\settings.py:89
+msgid "English"
+msgstr "Английский"
+
+#: .\my_shop\urls.py:12
+msgid "cart/"
+msgstr "корзина/"
+
+#: .\my_shop\urls.py:13
+msgid "orders/"
+msgstr "заказы/"
+
+#: .\my_shop\urls.py:14
+msgid "payment/"
+msgstr "оплата/"
+
+#: .\my_shop\urls.py:15
+msgid "coupons/"
+msgstr "купоны/"
+
+#: .\payment\templates\payment\canceled.html:4
+msgid "Payment canceled"
+msgstr "Покупка отменена"
+
+#: .\payment\templates\payment\canceled.html:7
+msgid "Your payment has not been processed"
+msgstr "Ваш платеж не был обработан"
+
+#: .\payment\templates\payment\canceled.html:8
+msgid "There was a problem processing your payment."
+msgstr "Возникла проблема с обработкой вашего платежа."
+
+#: .\payment\templates\payment\completed.html:4
+msgid "Payment successful"
+msgstr "Платеж прошел успешно"
+
+#: .\payment\templates\payment\completed.html:7
+msgid "Your payment was successful"
+msgstr "Платеж прошел успешно"
+
+#: .\payment\templates\payment\completed.html:8
+msgid "Your payment has been processed successfully."
+msgstr "Ваш платеж был успешно обработан."
+
+#: .\payment\templates\payment\process.html:5
+msgid "Pay your order"
+msgstr "Оплатите свой заказ"
+
+#: .\payment\templates\payment\process.html:8
+msgid "Order summary"
+msgstr "Краткое описание заказа"
+
+#: .\payment\templates\payment\process.html:66
+msgid "Pay now"
+msgstr "Заплатить сейчас"
+
+#: .\payment\urls.py:10
+msgid "process/"
+msgstr "обработка/"
+
+#: .\payment\urls.py:11
+msgid "completed/"
+msgstr "покупка завершена/"
+
+#: .\payment\urls.py:12
+msgid "canceled/"
+msgstr "отмена покупки/"
+
+#: .\shop\templates\shop\base.html:9 .\shop\templates\shop\base.html:16
+msgid "My shop"
+msgstr "Мой магазин"
+
+#: .\shop\templates\shop\base.html:21
+msgid "Language"
+msgstr "Язык"
+
+#: .\shop\templates\shop\base.html:41
+msgid "Your cart"
+msgstr "Ваша корзина"
+
+#: .\shop\templates\shop\base.html:43
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t%(items)s item, ₽%(total)s\n"
+"\t\t\t\t"
+msgid_plural ""
+"\n"
+"\t\t\t\t\t%(items)s items, ₽%(total)s\n"
+"\t\t\t\t"
+msgstr[0] ""
+"\n"
+"%(items)s товар, ₽%(total)s\t\t\t"
+msgstr[1] ""
+"\n"
+"%(items)s товара, ₽%(total)s\n"
+"\t\t\t\t"
+msgstr[2] ""
+"\n"
+"%(items)s товаров, ₽%(total)s\n"
+"\t\t\t\t"
+msgstr[3] ""
+"\n"
+"%(items)s товаров, ₽%(total)s\t\t\t\t"
+
+#: .\shop\templates\shop\base.html:52
+msgid "Your cart is empty."
+msgstr "Ваша корзина пуста"
+
+#: .\shop\templates\shop\product\detail.html:22
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: .\shop\templates\shop\product\list.html:6
+#: .\shop\templates\shop\product\list.html:25
+msgid "Products"
+msgstr "Товары"
+
+#: .\shop\templates\shop\product\list.html:11
+msgid "Categories"
+msgstr "Категории"
+
+#: .\shop\templates\shop\product\list.html:14
+msgid "All"
+msgstr "Все"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "\t\t\t\t\t\t\"%(code)s\" (%(discount)s%% off)\n"
+#~ "\t\t\t\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "\"%(code)s\" купон (скидка %(discount)s%%)\n"
+#~ "\t\t\t\t\t"

@@ -3,30 +3,71 @@ from decimal import Decimal
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from coupons.models import Coupon
 from shop.models import Product
 
 
 class Order(models.Model):
-    first_name = models.CharField(max_length=50, verbose_name='Имя')
-    last_name = models.CharField(max_length=50, verbose_name='Фамилия')
-    email = models.EmailField(verbose_name='E-mail')
-    address = models.CharField(max_length=250, verbose_name='Адрес')
-    postal_code = models.CharField(max_length=20, verbose_name='Индекс')
-    city = models.CharField(max_length=100, verbose_name='Город')
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated = models.DateTimeField(auto_now=True, verbose_name='Изменен')
-    paid = models.BooleanField(default=False, verbose_name='Оплачен')
-    stripe_id = models.CharField(max_length=250, blank=True)
-    coupon = models.ForeignKey(Coupon,
-                               related_name='orders',
-                               null=True,
-                               blank=True,
-                               on_delete=models.SET_NULL)
-    discount = models.IntegerField(default=0,
-                                   validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)])
+    first_name = models.CharField(
+        _('first_name'),
+        max_length=50,
+        # verbose_name='Имя'
+    )
+    last_name = models.CharField(
+        _('last_name'),
+        max_length=50,
+        # verbose_name='Фамилия'
+    )
+    email = models.EmailField(
+        _('email'),
+        # verbose_name='E-mail'
+    )
+    address = models.CharField(
+        _('address'),
+        max_length=250,
+        # verbose_name='Адрес'
+    )
+    postal_code = models.CharField(
+        _('postal_code'),
+        max_length=20,
+        # verbose_name='Индекс'
+    )
+    city = models.CharField(
+        _('city'),
+        max_length=100,
+        # verbose_name='Город'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Создан'
+    )
+    updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Изменен'
+    )
+    paid = models.BooleanField(
+        default=False,
+        verbose_name='Оплачен'
+    )
+    stripe_id = models.CharField(
+        max_length=250,
+        blank=True
+    )
+    coupon = models.ForeignKey(
+        Coupon,
+        related_name='orders',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name='Купон',
+    )
+    discount = models.IntegerField(
+        default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name='Скидка'
+    )
 
     class Meta:
         indexes = [

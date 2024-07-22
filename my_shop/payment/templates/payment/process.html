@@ -1,18 +1,19 @@
 {% extends "shop/base.html" %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}Оплата заказа{% endblock %}
+{% block title %}{% trans 'Pay your order' %}{% endblock %}
 
 {% block content %}
-	<h1>Краткое описание заказа</h1>
+	<h1>{% trans 'Order summary' %}</h1>
 	<table class="cart">
 		<thead>
 		<tr>
-			<th>Изображение</th>
-			<th>Товар</th>
-			<th>Цена</th>
-			<th>Количество</th>
-			<th>Стоимость</th>
+			<th>{% trans "Image" %}</th>
+			<th>{% trans "Product" %}</th>
+			<th>{% trans "Price" %}</th>
+			<th>{% trans "Quantity" %}</th>
+			<th>{% trans "Total" %}</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -31,7 +32,7 @@
 
 		{% if order.coupon %}
 			<tr class="subtotal">
-				<td>Предварительная стоимость</td>
+				<td>{% trans 'Subtotal' %}</td>
 				<td colspan="3"></td>
 				<td class="num">
 					₽{{ order.get_total_cost_before_discount|floatformat:2 }}
@@ -39,8 +40,10 @@
 			</tr>
 			<tr>
 				<td>
-					Купон "{{ order.coupon.code }}"
-					(скидка {{ order.discount }}%)
+					{% blocktrans with code=order.coupon.code discount=order.discount %}
+						"{{ code }}" coupon ({{ discount }}% off)
+					{% endblocktrans %}
+{#					Купон "{{ order.coupon.code }}" (скидка {{ order.discount }}%)#}
 				</td>
 				<td colspan="3"></td>
 				<td class="num neg">
@@ -50,7 +53,7 @@
 		{% endif %}
 
 		<tr class="total">
-			<td>Итоговая стоимость</td>
+			<td>{% trans 'Total' %}</td>
 			<td colspan="3"></td>
 			<td class="num">
 				₽{{ order.get_total_cost|floatformat:2 }}
@@ -60,7 +63,7 @@
 		</tbody>
 	</table>
 	<form action="{% url "payment:process" %}" method="post">
-		<input type="submit" value="Оплатить сейчас">
+		<input type="submit" value="{% trans 'Pay now' %}">
 		{% csrf_token %}
 	</form>
 {% endblock %}
