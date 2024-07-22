@@ -34,22 +34,27 @@ Python 3.12, Django 5.0.7, Redis 5.0
 git clone git@github.com:smaspb17/my_shop.git
 cd my_shop
 ```
+
 2. Создай и активируй виртуальное окружение: 
 ```shell
 python -m venv venv
 venv/Scripts/activate
 ```
+
 3. Установи зависимости:
 ```shell
 pip install -r requirements.txt
 ```
+
 4. При необходимости обнови пакетный менеджер pip:
 ```shell
 python -m pip install --upgrade pip
 ```
+
 5. Создай файл .env (в контейнере проекта `my_shop/`) и заполни его 
    переменными, указанными в файле example.env. Для системы оплаты, 
    зарегистрируйся в соответствующих сервисах и скопируй ключи.
+
 6. Перейди в пакет проекта (`my_shop/my_shop/`, где находится файл
    manage.py) и выполни миграции:
 ```shell
@@ -57,33 +62,40 @@ cd my_shop/
 python manage.py makemigrations
 python manage.py migrate
 ```
+
 7. Создай суперпользователя:
 ```shell
 python manage.py createsuperuser
 ```
+
 8. Открой Docker Desktop, cкачай образ RabbitMQ и запусти контейнер на ПК:
 ```shell
 docker pull rabbitmq
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
 ```
+
 9. Пройди адресу http://127.0.0.1:15672/ для просмотра пользовательского 
     интерфейса управления RabbitMQ.
+
 10. Открой еще одну оболочку и запустите работника Celery из каталога проекта:
 ```shell
 celery -A my_shop worker -l info --pool=threads --concurrency=8
 ```
 Проблема запуска Celery на Windows в статьях:
 https://celery.school/celery-on-windows
-https://celery.school/celery-worker-pools
+https://celery.school/celery-worker-pools.
+
 12. Открой еще одну оболочку и запустите инструмент мониторинга Flower:
 ```shell
 celery -A my_shop flower
 ```
-просмотр интерфейса Flower по адресу http://localhost:5555/
+просмотр интерфейса Flower по адресу http://localhost:5555/.
+
 13. Открой еще одну оболочку и запусти сервер разработки:
 ```shell
 python manage.py runserver
 ```
+
 Теперь ты можешь использовать проект на своём компьютере. 
 Если ты хочешь остановить проект, нажми Ctrl+C в терминале, 
 а затем деактивируй виртуальное окружение командой:
